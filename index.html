@@ -28,16 +28,8 @@ body{
 }
 
 /* Heading */
-h1{
-    margin-top:30px;
-    font-size:2.3rem;
-}
-
-.subtitle{
-    margin-bottom:25px;
-    font-size:1rem;
-    opacity:0.9;
-}
+h1{margin-top:30px;font-size:2.3rem;}
+.subtitle{margin-bottom:15px;font-size:1rem;opacity:0.9;}
 
 /* Banner */
 .banner{
@@ -49,7 +41,6 @@ h1{
     box-shadow:0 0 15px rgba(255,0,0,0.8);
     animation:pulse 2s infinite;
 }
-
 @keyframes pulse{
     0%{box-shadow:0 0 10px rgba(255,0,0,0.6);}
     50%{box-shadow:0 0 25px rgba(255,0,0,1);}
@@ -70,7 +61,6 @@ h1{
     border-radius:40px;
     transition:all 0.3s ease;
 }
-
 .link-button:hover{
     transform:scale(1.08);
     box-shadow:0 0 20px rgba(255,255,255,0.9);
@@ -104,12 +94,47 @@ h1{
     min-height:315px;
 }
 
+/* Followers Section */
+.followers{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin:20px 0;
+    gap:15px;
+}
+.follower-box{
+    background:rgba(0,0,0,0.5);
+    padding:12px 18px;
+    border-radius:20px;
+    min-width:120px;
+    font-weight:bold;
+    box-shadow:0 0 15px rgba(255,255,255,0.3);
+}
+
+/* Notification Button */
+#subscribeBtn{
+    background:#ff9900;
+    border:none;
+    padding:14px 20px;
+    font-size:1rem;
+    font-weight:bold;
+    border-radius:25px;
+    cursor:pointer;
+    margin:15px 0;
+    transition:all 0.3s ease;
+}
+#subscribeBtn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px rgba(255,255,255,0.8);
+}
+
 /* Responsive adjustments */
 @media(max-width:500px){
     h1{font-size:1.8rem;}
     .subtitle{font-size:0.95rem;}
     .banner{padding:10px 18px;font-size:0.9rem;}
     .link-button{font-size:0.95rem;padding:14px;}
+    .follower-box{min-width:100px;font-size:0.9rem;}
 }
 </style>
 </head>
@@ -117,31 +142,28 @@ h1{
 <body>
 
 <h1>King Emmanuel</h1>
+<p class="subtitle">Listen to my music on your favorite platform.<br>Please follow, save, like or comment.</p>
 
-<p class="subtitle">
-Listen to my music on your favorite platform.<br>
-Please follow, save, like or comment.
-</p>
+<div class="banner">🔥 New Release — Am Still In Love</div>
 
-<div class="banner">
-🔥 New Release — Am Still In Love
-</div>
-
-<!-- Spotify Player Embed -->
+<!-- Spotify Player -->
 <h2>🎧 Listen on Spotify</h2>
 <div class="embed-container">
-<iframe data-testid="embed-iframe" style="border:none"
-src="https://open.spotify.com/embed/track/2DNRbANkDj0U7SMMBE0geg?utm_source=generator"
-frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+<iframe src="https://open.spotify.com/embed/track/2DNRbANkDj0U7SMMBE0geg?utm_source=generator" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
 </div>
 
-<!-- YouTube Video Embed -->
+<!-- YouTube Player -->
 <h2>🎬 Watch on YouTube</h2>
 <div class="embed-container">
-<iframe src="https://www.youtube.com/embed/Gc4-Qec6MmM?si=LZqU3ohAe27wJmD3" 
-title="YouTube video player" frameborder="0" 
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/Gc4-Qec6MmM?si=LZqU3ohAe27wJmD3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+<!-- Followers -->
+<h2>👥 Followers</h2>
+<div class="followers">
+<div class="follower-box" id="instaCount">Instagram: 0</div>
+<div class="follower-box" id="xCount">X/Twitter: 0</div>
+<div class="follower-box" id="ytCount">YouTube: 0</div>
 </div>
 
 <!-- Music Links -->
@@ -152,17 +174,38 @@ allowfullscreen></iframe>
 <a href="https://link.deezer.com/s/32GWqOUlycbgwzSgg0jI3" class="link-button deezer">Deezer</a>
 <a href="https://www.boomplay.com/share/artist/1578461" class="link-button boomplay">Boomplay</a>
 
-<!-- Social Links -->
 <p style="margin-top:30px">Follow me on social media</p>
 <a href="https://www.tiktok.com/@obengsika007" class="link-button tiktok">TikTok</a>
 <a href="https://ca.pinterest.com/KingEmmanuel_1/" class="link-button pinterest">Pinterest</a>
 <a href="https://www.facebook.com/KingEmmanuelLive" class="link-button facebook">Facebook</a>
 <a href="https://x.com/Shepherdai18084" class="link-button x">X</a>
 
+<!-- Push Notification Subscribe -->
+<button id="subscribeBtn">🔔 Subscribe for Updates</button>
+
 <script>
+// Service Worker
 if("serviceWorker" in navigator){
     navigator.serviceWorker.register("sw.js");
 }
+
+// Push Notifications
+const subscribeBtn = document.getElementById('subscribeBtn');
+subscribeBtn.addEventListener('click', async ()=>{
+    if('Notification' in window && Notification.permission !== 'granted'){
+        let permission = await Notification.requestPermission();
+        if(permission === 'granted'){
+            new Notification("Thanks for subscribing! 🎵 You'll get updates for new releases.");
+        }
+    } else {
+        alert("Notifications already allowed or not supported.");
+    }
+});
+
+// Follower counts (dummy numbers for demo, can replace with APIs)
+document.getElementById('instaCount').innerText = "Instagram: 12.5K";
+document.getElementById('xCount').innerText = "X/Twitter: 8.2K";
+document.getElementById('ytCount').innerText = "YouTube: 15K";
 </script>
 
 </body>
