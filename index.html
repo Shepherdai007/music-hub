@@ -45,6 +45,7 @@ h1{
     font-weight:bold;
     box-shadow:0 0 15px rgba(255,0,0,0.8);
     animation:blink 1s infinite;
+    cursor:pointer;
 }
 
 @keyframes blink{
@@ -78,6 +79,7 @@ h1{
 .youtube{background:#FF0000;}
 .deezer{background:#0071CE;}
 .boomplay{background:#E60012;}
+.whatsapp{background:#25D366;}
 
 .tiktok{background:#010101;}
 .pinterest{background:#E60023;}
@@ -112,7 +114,7 @@ title="YouTube video player" frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
 allowfullscreen></iframe>
 
-<div class="banner">
+<div class="banner" id="new-release">
 🔥 New Release — Am Still In Love
 </div>
 
@@ -123,6 +125,9 @@ allowfullscreen></iframe>
 <a href="https://music.youtube.com/channel/UC7H16OVtAw1yWm8Fp_OKuIQ" class="link-button youtube">YouTube Music</a>
 <a href="https://link.deezer.com/s/32GWqOUlycbgwzSgg0jI3" class="link-button deezer">Deezer</a>
 <a href="https://www.boomplay.com/share/artist/1578461" class="link-button boomplay">Boomplay</a>
+
+<!-- WhatsApp Channel -->
+<a href="https://whatsapp.com/channel/0029VbCWPL1BVJlDY7tsp13U" class="link-button whatsapp">Follow on WhatsApp</a>
 
 <p style="margin-top:30px">Follow me on social media</p>
 <a href="https://www.tiktok.com/@obengsika007" class="link-button tiktok">TikTok</a>
@@ -153,6 +158,20 @@ notifyBtn.addEventListener("click", async () => {
         }
     } else {
         alert("Push Notifications are not supported in this browser.");
+    }
+});
+
+// New Release Banner Push Notification
+const newRelease = document.getElementById("new-release");
+newRelease.addEventListener("click", async () => {
+    if ("Notification" in window && "serviceWorker" in navigator) {
+        const permission = await Notification.requestPermission();
+        if (permission === "granted") {
+            new Notification("🔥 New Release — Am Still In Love!", {
+                body: "Click to listen on your favorite platform.",
+                icon: "icon-192.png"
+            });
+        }
     }
 });
 </script>
