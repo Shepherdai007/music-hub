@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>King Emmanuel Music Hub</title>
-
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 
@@ -48,9 +47,10 @@ h1{
     animation:blink 1s infinite;
 }
 
-@keyframes blink {
-    0%, 50%, 100% {opacity:1;}
-    25%, 75% {opacity:0.3;}
+@keyframes blink{
+    0% {opacity:1;}
+    50% {opacity:0.3;}
+    100% {opacity:1;}
 }
 
 .link-button{
@@ -83,22 +83,6 @@ h1{
 .pinterest{background:#E60023;}
 .facebook{background:#1877F2;}
 .x{background:#1DA1F2;}
-
-.notify-btn{
-    margin:20px;
-    padding:10px 20px;
-    font-size:1rem;
-    border-radius:15px;
-    background:#FF0000;
-    color:white;
-    border:none;
-    cursor:pointer;
-}
-
-.contact{
-    margin-top:20px;
-    font-weight:bold;
-}
 </style>
 
 </head>
@@ -109,7 +93,8 @@ h1{
 
 <p class="subtitle">
 Listen to my music on your favorite platform.<br>
-Please follow, save, like or comment.
+Please follow, save, like or comment.<br>
+📞 Contact: +1 647-852-1007
 </p>
 
 <!-- Spotify Player Embed -->
@@ -119,32 +104,17 @@ src="https://open.spotify.com/embed/track/2DNRbANkDj0U7SMMBE0geg?utm_source=gene
 width="100%" height="352" frameBorder="0" allowfullscreen=""
 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
+<!-- YouTube Video Embed -->
+<h2>📺 Watch on YouTube</h2>
+<iframe width="100%" height="315" 
+src="https://www.youtube.com/embed/Gc4-Qec6MmM?si=LZqU3ohAe27wJmD3" 
+title="YouTube video player" frameborder="0" 
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+allowfullscreen></iframe>
+
 <div class="banner">
 🔥 New Release — Am Still In Love
 </div>
-
-<!-- Push Notifications -->
-<button id="notify-btn" class="notify-btn">
-🔔 Subscribe for New Releases
-</button>
-
-<script>
-// Request permission for Push Notifications
-const notifyBtn = document.getElementById("notify-btn");
-
-notifyBtn.addEventListener("click", async () => {
-    if ("Notification" in window && "serviceWorker" in navigator) {
-        const permission = await Notification.requestPermission();
-        if (permission === "granted") {
-            alert("You are now subscribed! We'll notify you of new releases.");
-        } else {
-            alert("Notifications blocked. You can enable them in your browser settings.");
-        }
-    } else {
-        alert("Push Notifications are not supported in this browser.");
-    }
-});
-</script>
 
 <!-- Music Links -->
 <a href="https://open.spotify.com/artist/73TYz0XfqWHj4Jt6C23P1X?si=RGtX_JHqSmC7tcAgdvz_Mg" class="link-button spotify">Spotify</a>
@@ -160,12 +130,31 @@ notifyBtn.addEventListener("click", async () => {
 <a href="https://www.facebook.com/KingEmmanuelLive" class="link-button facebook">Facebook</a>
 <a href="https://x.com/Shepherdai18084" class="link-button x">X</a>
 
-<p class="contact">📞 Contact: +1 647-852-1007</p>
+<!-- Push Notifications -->
+<button id="notify-btn" style="margin:20px;padding:10px 20px;font-size:1rem;border-radius:15px;background:#FF0000;color:white;border:none;cursor:pointer;">
+🔔 Subscribe for New Releases
+</button>
 
 <script>
+// Register Service Worker
 if("serviceWorker" in navigator){
     navigator.serviceWorker.register("sw.js");
 }
+
+// Push Notifications Button
+const notifyBtn = document.getElementById("notify-btn");
+notifyBtn.addEventListener("click", async () => {
+    if ("Notification" in window && "serviceWorker" in navigator) {
+        const permission = await Notification.requestPermission();
+        if (permission === "granted") {
+            alert("You are now subscribed! We'll notify you of new releases.");
+        } else {
+            alert("Notifications blocked. You can enable them in your browser settings.");
+        }
+    } else {
+        alert("Push Notifications are not supported in this browser.");
+    }
+});
 </script>
 
 </body>
