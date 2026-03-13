@@ -48,10 +48,9 @@ h1{
     animation:blink 1s infinite;
 }
 
-@keyframes blink{
-    0%{opacity:1; box-shadow:0 0 10px rgba(255,0,0,0.6);}
-    50%{opacity:0.5; box-shadow:0 0 25px rgba(255,0,0,1);}
-    100%{opacity:1; box-shadow:0 0 10px rgba(255,0,0,0.6);}
+@keyframes blink {
+    0%, 50%, 100% {opacity:1;}
+    25%, 75% {opacity:0.3;}
 }
 
 .link-button{
@@ -85,21 +84,23 @@ h1{
 .facebook{background:#1877F2;}
 .x{background:#1DA1F2;}
 
-.counter {
-    margin-top: 10px;
-    font-size: 1rem;
-    font-weight:bold;
-    color: #fff;
+.notify-btn{
+    margin:20px;
+    padding:10px 20px;
+    font-size:1rem;
+    border-radius:15px;
+    background:#FF0000;
+    color:white;
+    border:none;
+    cursor:pointer;
 }
 
 .contact{
-    margin-top:25px;
-    font-size:1rem;
-    background:rgba(0,0,0,0.5);
-    padding:10px 15px;
-    border-radius:15px;
+    margin-top:20px;
+    font-weight:bold;
 }
 </style>
+
 </head>
 
 <body>
@@ -118,22 +119,39 @@ src="https://open.spotify.com/embed/track/2DNRbANkDj0U7SMMBE0geg?utm_source=gene
 width="100%" height="352" frameBorder="0" allowfullscreen=""
 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
-<!-- YouTube Latest Song Embed -->
-<h2>🎬 Latest YouTube Release</h2>
-<iframe width="100%" height="315" style="border-radius:12px"
-src="https://www.youtube.com/embed/Gc4-Qec6MmM?si=LZqU3ohAe27wJmD3"
-title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
 <div class="banner">
 🔥 New Release — Am Still In Love
 </div>
+
+<!-- Push Notifications -->
+<button id="notify-btn" class="notify-btn">
+🔔 Subscribe for New Releases
+</button>
+
+<script>
+// Request permission for Push Notifications
+const notifyBtn = document.getElementById("notify-btn");
+
+notifyBtn.addEventListener("click", async () => {
+    if ("Notification" in window && "serviceWorker" in navigator) {
+        const permission = await Notification.requestPermission();
+        if (permission === "granted") {
+            alert("You are now subscribed! We'll notify you of new releases.");
+        } else {
+            alert("Notifications blocked. You can enable them in your browser settings.");
+        }
+    } else {
+        alert("Push Notifications are not supported in this browser.");
+    }
+});
+</script>
 
 <!-- Music Links -->
 <a href="https://open.spotify.com/artist/73TYz0XfqWHj4Jt6C23P1X?si=RGtX_JHqSmC7tcAgdvz_Mg" class="link-button spotify">Spotify</a>
 <a href="https://music.apple.com/ca/artist/king-emmanuel/1873301831?ls" class="link-button apple">Apple Music</a>
 <a href="https://music.amazon.ca/artists/B0GPLZG3NB" class="link-button amazon">Amazon Music</a>
 <a href="https://music.youtube.com/channel/UC7H16OVtAw1yWm8Fp_OKuIQ" class="link-button youtube">YouTube Music</a>
-<a href="https://link.deezer.com/s/32GWqOUlycbgwzSgg0j3" class="link-button deezer">Deezer</a>
+<a href="https://link.deezer.com/s/32GWqOUlycbgwzSgg0jI3" class="link-button deezer">Deezer</a>
 <a href="https://www.boomplay.com/share/artist/1578461" class="link-button boomplay">Boomplay</a>
 
 <p style="margin-top:30px">Follow me on social media</p>
@@ -142,52 +160,12 @@ title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; cli
 <a href="https://www.facebook.com/KingEmmanuelLive" class="link-button facebook">Facebook</a>
 <a href="https://x.com/Shepherdai18084" class="link-button x">X</a>
 
-<!-- Live Follower Counters -->
-<div class="counter" id="youtube-counter">YouTube Subscribers: Loading...</div>
-<div class="counter" id="x-counter">X Followers: Loading...</div>
-
-<!-- Contact Info -->
-<div class="contact">
-📞 Contact: +1 647 852 1007
-</div>
+<p class="contact">📞 Contact: +1 647-852-1007</p>
 
 <script>
-// Register Service Worker
 if("serviceWorker" in navigator){
     navigator.serviceWorker.register("sw.js");
 }
-
-// -------------------
-// LIVE API COUNTERS
-// -------------------
-
-// 1️⃣ YouTube Subscribers (replace YOUR_API_KEY with your real key)
-const YOUTUBE_CHANNEL_ID = "UC7H16OVtAw1yWm8Fp_OKuIQ";
-const API_KEY = "YOUR_API_KEY"; // 🔑 Replace with your YouTube API key
-function updateYouTube(){
-    fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${YOUTUBE_CHANNEL_ID}&key=${API_KEY}`)
-    .then(res => res.json())
-    .then(data => {
-        const subs = data.items[0].statistics.subscriberCount;
-        document.getElementById("youtube-counter").innerText = `YouTube Subscribers: ${subs}`;
-    }).catch(e => console.log(e));
-}
-
-// 2️⃣ X/Twitter Followers
-const X_USERNAME = "Shepherdai18084";
-function updateX(){
-    fetch(`https://cdn.syndication.twimg.com/widgets/followbutton/info.json?screen_names=${X_USERNAME}`)
-    .then(res => res.json())
-    .then(data => {
-        const followers = data[0].followers_count;
-        document.getElementById("x-counter").innerText = `X Followers: ${followers}`;
-    }).catch(e => console.log(e));
-}
-
-// Auto-refresh every 10 seconds
-updateYouTube();
-updateX();
-setInterval(()=>{updateYouTube(); updateX();},10000);
 </script>
 
 </body>
