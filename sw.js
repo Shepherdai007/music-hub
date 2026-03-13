@@ -1,7 +1,6 @@
-// sw.js
-
-const CACHE_NAME = "music-hub-cache-v1";
+const CACHE_NAME = "music-hub-v1";
 const urlsToCache = [
+  "/",
   "/index.html",
   "/icon-192.png",
   "/icon-512.png",
@@ -9,46 +8,59 @@ const urlsToCache = [
   "/manifest.json"
 ];
 
-// Install service worker and cache files
+// Install Service Worker and cache all assets
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
+        console.log("Caching app assets...");
         return cache.addAll(urlsToCache);
       })
   );
+  self.skipWaiting();
 });
 
-// Activate service worker
+// Activate Service Worker and clean old caches
 self.addEventListener("activate", (event) => {
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    caches.keys().then((keyList) => {
+      return Promise.all(
+        keyList.map((key) => {
+          if (key !== CACHE_NAME) {
+            console.log("Removing old cache:", key);
+            return caches.delete(key);
+          }
+        })
+      );
+    })
+  );
+  self.clients.claim();
 });
 
-// Fetch files from cache first
+// Fetch event: serve cached files when offline
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request)
-      .then((response) => response || fetch(event.request))
-  );
-});
-
-// Push Notification listener
-self.addEventListener("push", (event) => {
-  const data = event.data ? event.data.text() : "New music release is live!";
-  const options = {
-    body: data,
-    icon: "/icon-192.png",
-    badge: "/icon-192.png"
-  };
-  event.waitUntil(
-    self.registration.showNotification("King Emmanuel Music Hub", options)
-  );
-});
-
-// Optional: Notification click behavior
-self.addEventListener("notificationclick", (event) => {
-  event.notification.close();
-  event.waitUntil(
-    clients.openWindow("/") // Opens your PWA homepage
+      .then((cachedResponse) => {
+        if (cachedResponse) {
+          return cachedResponse; // return from cache
+        }
+        return fetch(event.request) // fetch from network
+          .then((networkResponse) => {
+            // Optionally cache new requests
+            return caches.open(CACHE_NAME).then((cache) => {
+              if (event.request.method === "GET" && event.request.url.startsWith("http")) {
+                cache.put(event.request, networkResponse.clone());
+              }
+              return networkResponse;
+            });
+          })
+          .catch(() => {
+            // Fallback offline page or image if needed
+            if (event.request.destination === "document") {
+              return caches.match("/index.html");
+            }
+          });
+      })
   );
 });
