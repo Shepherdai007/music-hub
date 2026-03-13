@@ -48,7 +48,6 @@ h1{
     animation:blink 1s infinite;
 }
 
-/* Blink Animation */
 @keyframes blink{
     0%{opacity:1; box-shadow:0 0 10px rgba(255,0,0,0.6);}
     50%{opacity:0.5; box-shadow:0 0 25px rgba(255,0,0,1);}
@@ -92,6 +91,14 @@ h1{
     font-weight:bold;
     color: #fff;
 }
+
+.contact{
+    margin-top:25px;
+    font-size:1rem;
+    background:rgba(0,0,0,0.5);
+    padding:10px 15px;
+    border-radius:15px;
+}
 </style>
 </head>
 
@@ -110,6 +117,12 @@ Please follow, save, like or comment.
 src="https://open.spotify.com/embed/track/2DNRbANkDj0U7SMMBE0geg?utm_source=generator"
 width="100%" height="352" frameBorder="0" allowfullscreen=""
 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+<!-- YouTube Latest Song Embed -->
+<h2>🎬 Latest YouTube Release</h2>
+<iframe width="100%" height="315" style="border-radius:12px"
+src="https://www.youtube.com/embed/Gc4-Qec6MmM?si=LZqU3ohAe27wJmD3"
+title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 <div class="banner">
 🔥 New Release — Am Still In Love
@@ -133,6 +146,11 @@ allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-pictur
 <div class="counter" id="youtube-counter">YouTube Subscribers: Loading...</div>
 <div class="counter" id="x-counter">X Followers: Loading...</div>
 
+<!-- Contact Info -->
+<div class="contact">
+📞 Contact: +1 647 852 1007
+</div>
+
 <script>
 // Register Service Worker
 if("serviceWorker" in navigator){
@@ -143,23 +161,33 @@ if("serviceWorker" in navigator){
 // LIVE API COUNTERS
 // -------------------
 
-// 1️⃣ YouTube Subscribers (replace YOUR_CHANNEL_ID)
+// 1️⃣ YouTube Subscribers (replace YOUR_API_KEY with your real key)
 const YOUTUBE_CHANNEL_ID = "UC7H16OVtAw1yWm8Fp_OKuIQ";
-fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${YOUTUBE_CHANNEL_ID}&key=YOUR_API_KEY`)
-.then(res => res.json())
-.then(data => {
-    const subs = data.items[0].statistics.subscriberCount;
-    document.getElementById("youtube-counter").innerText = `YouTube Subscribers: ${subs}`;
-}).catch(e => console.log(e));
+const API_KEY = "YOUR_API_KEY"; // 🔑 Replace with your YouTube API key
+function updateYouTube(){
+    fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${YOUTUBE_CHANNEL_ID}&key=${API_KEY}`)
+    .then(res => res.json())
+    .then(data => {
+        const subs = data.items[0].statistics.subscriberCount;
+        document.getElementById("youtube-counter").innerText = `YouTube Subscribers: ${subs}`;
+    }).catch(e => console.log(e));
+}
 
-// 2️⃣ X/Twitter Followers (replace USERNAME)
+// 2️⃣ X/Twitter Followers
 const X_USERNAME = "Shepherdai18084";
-fetch(`https://cdn.syndication.twimg.com/widgets/followbutton/info.json?screen_names=${X_USERNAME}`)
-.then(res => res.json())
-.then(data => {
-    const followers = data[0].followers_count;
-    document.getElementById("x-counter").innerText = `X Followers: ${followers}`;
-}).catch(e => console.log(e));
+function updateX(){
+    fetch(`https://cdn.syndication.twimg.com/widgets/followbutton/info.json?screen_names=${X_USERNAME}`)
+    .then(res => res.json())
+    .then(data => {
+        const followers = data[0].followers_count;
+        document.getElementById("x-counter").innerText = `X Followers: ${followers}`;
+    }).catch(e => console.log(e));
+}
+
+// Auto-refresh every 10 seconds
+updateYouTube();
+updateX();
+setInterval(()=>{updateYouTube(); updateX();},10000);
 </script>
 
 </body>
