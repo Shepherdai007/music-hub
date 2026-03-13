@@ -161,16 +161,19 @@ notifyBtn.addEventListener("click", async () => {
     }
 });
 
-// New Release Banner Push Notification
+// New Release Banner Push Notification (clickable)
 const newRelease = document.getElementById("new-release");
 newRelease.addEventListener("click", async () => {
     if ("Notification" in window && "serviceWorker" in navigator) {
         const permission = await Notification.requestPermission();
         if (permission === "granted") {
-            new Notification("🔥 New Release — Am Still In Love!", {
-                body: "Click to listen on your favorite platform.",
+            const notification = new Notification("🔥 New Release — Am Still In Love!", {
+                body: "Click to listen on Spotify!",
                 icon: "icon-192.png"
             });
+            notification.onclick = () => {
+                window.open("https://open.spotify.com/track/2DNRbANkDj0U7SMMBE0geg?utm_source=generator", "_blank");
+            };
         }
     }
 });
