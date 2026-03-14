@@ -36,7 +36,7 @@ body{
   transition:0.3s;
 }
 
-#top-bar span:hover{
+#top-bar span:hover, #top-bar span:active{
   color:#FFD700;
   text-shadow:0 0 10px #FFD700;
 }
@@ -76,7 +76,14 @@ h1{ margin-top:60px; font-size:2.5rem; }
   transition:0.3s;
 }
 
+/* Desktop hover */
 .link-button:hover{
+  transform:scale(1.07);
+  box-shadow:0 0 20px white;
+}
+
+/* Mobile tap effect */
+.link-button:active{
   transform:scale(1.07);
   box-shadow:0 0 20px white;
 }
@@ -165,7 +172,7 @@ form button{
   cursor:pointer;
   transition:0.3s;
 }
-#install-btn:hover{
+#install-btn:hover, #install-btn:active{
   transform:scale(1.05);
   box-shadow:0 0 20px #FFD700;
 }
