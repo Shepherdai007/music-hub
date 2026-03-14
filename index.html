@@ -1,169 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>King Emmanuel Music Hub</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
-
 <style>
-body{
-font-family:Arial, sans-serif;
-background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("worship.jpg");
-background-size:cover;
-background-position:center;
-color:white;
-text-align:center;
-padding:20px;
-}
-
-/* Clock at top */
-#clock{
-position:fixed;
-top:10px;
-left:0;
-right:0;
-text-align:center;
-font-size:14px;
-opacity:0.8;
-z-index:999;
-}
-
-h1{ font-size:2.5rem; margin-top:50px; }
-.subtitle{ opacity:0.9; margin-bottom:20px; }
-
-.banner{
-background:#ff0000;
-padding:12px 20px;
-border-radius:30px;
-font-weight:bold;
-margin:20px;
-animation:blink 1s infinite;
-cursor:pointer;
-}
-
-@keyframes blink{
-0%{opacity:1;}
-50%{opacity:0.3;}
-100%{opacity:1;}
-}
-
-.link-button{
-display:block;
-width:85%;
-max-width:320px;
-margin:10px auto;
-padding:15px;
-border-radius:40px;
-font-weight:bold;
-text-decoration:none;
-color:white;
-}
-
-.spotify{background:#1DB954;}
-.apple{background:#000;}
-.amazon{background:#FF9900;}
-.youtube{background:#FF0000;}
-.deezer{background:#0071CE;}
-.boomplay{background:#E60012;}
-.whatsapp{background:#25D366;}
-.tiktok{background:#010101;}
-.pinterest{background:#E60023;}
-.facebook{background:#1877F2;}
-.x{background:#1DA1F2;}
+body{font-family:Arial,sans-serif;background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("worship.jpg");background-size:cover;background-position:center;color:white;text-align:center;padding:20px;}
+h1{font-size:2.5rem;margin-top:50px;}
+.subtitle{opacity:0.9;margin-bottom:20px;}
+#clock{position:fixed;top:10px;left:0;right:0;text-align:center;font-size:14px;opacity:0.8;z-index:999;}
+.banner{background:#ff0000;padding:12px 20px;border-radius:30px;font-weight:bold;margin:20px;animation:blink 1s infinite;cursor:pointer;}
+@keyframes blink{0%{opacity:1;}50%{opacity:0.3;}100%{opacity:1;}}
+.link-button{display:block;width:85%;max-width:320px;margin:10px auto;padding:15px;border-radius:40px;font-weight:bold;text-decoration:none;color:white;text-align:center;}
+.spotify{background:#1DB954;} .apple{background:#000;} .amazon{background:#FF9900;} .youtube{background:#FF0000;} .deezer{background:#0071CE;} .boomplay{background:#E60012;} .whatsapp{background:#25D366;}
+.tiktok{background:#010101;} .pinterest{background:#E60023;} .facebook{background:#1877F2;} .x{background:#1DA1F2;}
 .merch{background:#FFD700;color:black;}
-
-form input,form textarea{
-padding:10px;
-margin:5px;
-border-radius:10px;
-border:none;
-width:80%;
-max-width:300px;
-}
-
-form button{
-padding:10px 20px;
-border:none;
-border-radius:20px;
-background:#ff0000;
-color:white;
-cursor:pointer;
-}
-
-/* Release Popup */
-#release-popup{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.95);
-color:white;
-display:none;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-font-size:2rem;
-z-index:9999;
-padding:20px;
-text-align:center;
-}
-#release-popup button{
-padding:15px 30px;
-border:none;
-border-radius:30px;
-background:#1DB954;
-color:white;
-font-size:1.2rem;
-cursor:pointer;
-margin-top:20px;
-}
+form input,form textarea{padding:10px;margin:5px;border-radius:10px;border:none;width:80%;max-width:300px;}
+form button{padding:10px 20px;border:none;border-radius:20px;background:#ff0000;color:white;}
+#release-popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);color:white;display:none;flex-direction:column;justify-content:center;align-items:center;font-size:2rem;z-index:9999;}
 </style>
 </head>
 
 <body>
-
 <div id="clock"></div>
 
-<!-- Release Popup -->
 <div id="release-popup">
 🔥 NEW SONG JUST DROPPED 🔥
 <br><br>
-<button onclick="openSong()">Listen Now</button>
+<button onclick="openSong()" style="padding:15px 30px;border:none;border-radius:30px;background:#1DB954;color:white;font-size:1.2rem;cursor:pointer;">
+Listen Now
+</button>
 </div>
 
 <h1>King Emmanuel</h1>
 <h3 id="fan-count">🔥 Fans Connected: 1284</h3>
-
 <p class="subtitle">
 Listen to my music on your favorite platform<br>
 📞 Contact: +1 647-852-1007
 </p>
 
-<!-- Spotify Player Embed -->
 <h2>🎧 Listen on Spotify</h2>
-<iframe style="border-radius:12px"
-src="https://open.spotify.com/embed/track/2DNRbANkDj0U7SMMBE0geg"
-width="100%" height="352"
-frameborder="0" allowfullscreen
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-</iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2DNRbANkDj0U7SMMBE0geg" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
-<!-- YouTube Player Embed -->
 <h2>📺 Watch on YouTube</h2>
-<iframe width="100%" height="315"
-src="https://www.youtube.com/embed/Gc4-Qec6MmM"
-frameborder="0" allowfullscreen>
-</iframe>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/Gc4-Qec6MmM" frameborder="0" allowfullscreen></iframe>
 
-<!-- Blinking New Release Banner -->
 <div class="banner" id="new-release">
 🔥 New Release — Am Still In Love
 </div>
 
-<!-- Music Links -->
+<!-- Music Platform Links -->
 <a href="https://open.spotify.com/artist/73TYz0XfqWHj4Jt6C23P1X" class="link-button spotify">Spotify</a>
 <a href="https://music.apple.com/ca/artist/king-emmanuel/1873301831" class="link-button apple">Apple Music</a>
 <a href="https://music.amazon.ca/artists/B0GPLZG3NB" class="link-button amazon">Amazon Music</a>
@@ -174,7 +63,7 @@ frameborder="0" allowfullscreen>
 <a href="#" class="link-button merch">🛍 Official Merch Store (Coming Soon)</a>
 
 <h3>Send a Message</h3>
-<form action="https://formspree.io/f/xkgbovrl" method="POST">
+<form action="https://formspree.io/f/maqpbbpz" method="POST">
 <input type="text" name="name" placeholder="Your Name" required><br>
 <input type="email" name="email" placeholder="Your Email" required><br>
 <textarea name="message" placeholder="Your Message" required></textarea><br>
@@ -204,59 +93,41 @@ updateClock();
 
 /* FAN COUNTER */
 let fans=1284;
-setInterval(()=>{
-    fans++;
-    document.getElementById("fan-count").innerText="🔥 Fans Connected: "+fans;
-},4000);
+setInterval(()=>{fans++;document.getElementById("fan-count").innerText="🔥 Fans Connected: "+fans;},4000);
 
 /* SERVICE WORKER */
-if("serviceWorker" in navigator){
-    navigator.serviceWorker.register("sw.js");
-}
+if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}
 
 /* PUSH SUBSCRIBE */
 document.getElementById("notify-btn").addEventListener("click", async()=>{
     if("Notification" in window){
-        const permission = await Notification.requestPermission();
+        const permission=await Notification.requestPermission();
         if(permission==="granted"){
             alert("Subscribed for new releases!");
-        }
+        } else { alert("Notifications blocked. Enable in browser settings."); }
     }
 });
 
-/* NEW RELEASE BANNER CLICK - Popup + Push Notification */
-const banner = document.getElementById("new-release");
-banner.addEventListener("click", async ()=>{
-    // Show popup
-    const popup = document.getElementById("release-popup");
-    popup.style.display="flex";
-
-    // Auto-hide after 5 seconds
-    setTimeout(()=>{popup.style.display="none"},5000);
-
-    // Trigger push notification
+/* NEW RELEASE BANNER CLICK + PUSH NOTIFICATION */
+document.getElementById("new-release").addEventListener("click", ()=>{
     if("Notification" in window){
-        const permission = await Notification.requestPermission();
-        if(permission==="granted"){
-            const notification = new Notification("🔥 New Release — Am Still In Love",{
-                body:"Click to listen on Spotify",
-                icon:"icon-192.png"
-            });
-            notification.onclick=function(){window.open("https://open.spotify.com/track/2DNRbANkDj0U7SMMBE0geg");};
-        }
+        const notification=new Notification("🔥 New Release — Am Still In Love",{
+            body:"Click to listen on Spotify",
+            icon:"icon-192.png"
+        });
+        notification.onclick=function(){ window.open("https://open.spotify.com/track/2DNRbANkDj0U7SMMBE0geg"); };
     }
 });
 
-/* RELEASE POPUP BUTTON */
-function openSong(){
-    window.open("https://open.spotify.com/track/2DNRbANkDj0U7SMMBE0geg");
-    document.getElementById("release-popup").style.display="none";
-}
+/* FULL SCREEN RELEASE POPUP */
+function openSong(){ window.open("https://open.spotify.com/track/2DNRbANkDj0U7SMMBE0geg"); document.getElementById("release-popup").style.display="none"; }
 
-/* GLOBAL FAN MAP - Placeholder for future */
-function initFanMap(){
-    // TODO: integrate map API to show fans around the world
-}
+/* POPUP AUTO SHOW & AUTO HIDE AFTER 5s */
+setTimeout(()=>{
+    const popup=document.getElementById("release-popup");
+    popup.style.display="flex";
+    setTimeout(()=>{popup.style.display="none";},5000);
+},5000);
 </script>
 
 </body>
