@@ -1,26 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>King Emmanuel Music Hub</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
+
 <style>
-body{font-family:Arial,sans-serif;background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("worship.jpg");background-size:cover;background-position:center;color:white;text-align:center;padding:20px;}
+body{
+    font-family:Arial,sans-serif;
+    background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("worship.jpg");
+    background-size:cover;
+    background-position:center;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
 h1{font-size:2.5rem;margin-top:50px;}
 .subtitle{opacity:0.9;margin-bottom:20px;}
-#clock{position:fixed;top:10px;left:0;right:0;text-align:center;font-size:14px;opacity:0.8;z-index:999;}
-.banner{background:#ff0000;padding:12px 20px;border-radius:30px;font-weight:bold;margin:20px;animation:blink 1s infinite;cursor:pointer;}
+#clock{
+    position:fixed;top:10px;left:0;right:0;text-align:center;font-size:14px;opacity:0.8;z-index:999;
+}
+.banner{
+    background:#ff0000;padding:12px 20px;border-radius:30px;font-weight:bold;margin:20px;
+    animation:blink 1s infinite;cursor:pointer;
+}
 @keyframes blink{0%{opacity:1;}50%{opacity:0.3;}100%{opacity:1;}}
-.link-button{display:block;width:85%;max-width:320px;margin:10px auto;padding:15px;border-radius:40px;font-weight:bold;text-decoration:none;color:white;text-align:center;}
-.spotify{background:#1DB954;} .apple{background:#000;} .amazon{background:#FF9900;} .youtube{background:#FF0000;} .deezer{background:#0071CE;} .boomplay{background:#E60012;} .whatsapp{background:#25D366;}
-.tiktok{background:#010101;} .pinterest{background:#E60023;} .facebook{background:#1877F2;} .x{background:#1DA1F2;}
-.merch{background:#FFD700;color:black;}
+.link-button{
+    display:block;width:85%;max-width:320px;margin:10px auto;padding:15px;border-radius:40px;
+    font-weight:bold;text-decoration:none;color:white;
+}
+.spotify{background:#1DB954;} .apple{background:#000;} .amazon{background:#FF9900;}
+.youtube{background:#FF0000;} .deezer{background:#0071CE;} .boomplay{background:#E60012;}
+.whatsapp{background:#25D366;} .tiktok{background:#010101;} .pinterest{background:#E60023;}
+.facebook{background:#1877F2;} .x{background:#1DA1F2;} .merch{background:#FFD700;color:black;}
+
 form input,form textarea{padding:10px;margin:5px;border-radius:10px;border:none;width:80%;max-width:300px;}
 form button{padding:10px 20px;border:none;border-radius:20px;background:#ff0000;color:white;}
-#release-popup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);color:white;display:none;flex-direction:column;justify-content:center;align-items:center;font-size:2rem;z-index:9999;}
+
+#release-popup{
+    position:fixed;top:0;left:0;width:100%;height:100%;background:black;color:white;
+    display:none;flex-direction:column;justify-content:center;align-items:center;font-size:2rem;z-index:9999;
+}
 </style>
 </head>
 
@@ -36,37 +60,54 @@ Listen Now
 </div>
 
 <h1>King Emmanuel</h1>
-<h3 id="fan-count">🔥 Fans Connected: 1284</h3>
+<h3 id="fan-count">🔥 Fans Connected: 1317</h3>
+
 <p class="subtitle">
 Listen to my music on your favorite platform<br>
 📞 Contact: +1 647-852-1007
 </p>
 
 <h2>🎧 Listen on Spotify</h2>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2DNRbANkDj0U7SMMBE0geg" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/embed/track/2DNRbANkDj0U7SMMBE0geg"
+width="100%" height="352"
+frameBorder="0"
+allowfullscreen=""
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
 
 <h2>📺 Watch on YouTube</h2>
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/Gc4-Qec6MmM" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="315"
+src="https://www.youtube.com/embed/Gc4-Qec6MmM"
+frameborder="0"
+allowfullscreen>
+</iframe>
 
 <div class="banner" id="new-release">
 🔥 New Release — Am Still In Love
 </div>
 
-<!-- Music Platform Links -->
 <a href="https://open.spotify.com/artist/73TYz0XfqWHj4Jt6C23P1X" class="link-button spotify">Spotify</a>
 <a href="https://music.apple.com/ca/artist/king-emmanuel/1873301831" class="link-button apple">Apple Music</a>
 <a href="https://music.amazon.ca/artists/B0GPLZG3NB" class="link-button amazon">Amazon Music</a>
 <a href="https://music.youtube.com/channel/UC7H16OVtAw1yWm8Fp_OKuIQ" class="link-button youtube">YouTube Music</a>
 <a href="https://link.deezer.com/s/32GWqOUlycbgwzSgg0jI3" class="link-button deezer">Deezer</a>
 <a href="https://www.boomplay.com/share/artist/1578461" class="link-button boomplay">Boomplay</a>
-<a href="https://whatsapp.com/channel/0029VbCWPL1BVJlDY7tsp13U" class="link-button whatsapp">Follow King Emmanuel Music Channel on WhatsApp</a>
+
+<a href="https://whatsapp.com/channel/0029VbCWPL1BVJlDY7tsp13U" class="link-button whatsapp">
+Follow King Emmanuel Music Channel on WhatsApp
+</a>
+
 <a href="#" class="link-button merch">🛍 Official Merch Store (Coming Soon)</a>
 
 <h3>Send a Message</h3>
 <form action="https://formspree.io/f/maqpbbpz" method="POST">
-<input type="text" name="name" placeholder="Your Name" required><br>
-<input type="email" name="email" placeholder="Your Email" required><br>
-<textarea name="message" placeholder="Your Message" required></textarea><br>
+<input type="text" name="name" placeholder="Your Name" required>
+<br>
+<input type="email" name="email" placeholder="Your Email" required>
+<br>
+<textarea name="message" placeholder="Your Message" required></textarea>
+<br>
 <button type="submit">Send Message</button>
 </form>
 
@@ -76,58 +117,66 @@ Listen to my music on your favorite platform<br>
 <a href="https://www.facebook.com/KingEmmanuelLive" class="link-button facebook">Facebook</a>
 <a href="https://x.com/Shepherdai18084" class="link-button x">X</a>
 
-<!-- Subscribe Button -->
 <button id="notify-btn" style="margin:20px;padding:10px 20px;border-radius:20px;background:#FF0000;color:white;border:none;">
 🔔 Subscribe for New Releases
 </button>
 
 <script>
-/* CLOCK */
+// CLOCK
 function updateClock(){
-    const now=new Date();
-    const time=now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-    document.getElementById("clock").innerText="🕒 "+time+" | King Emmanuel Music Hub";
+const now=new Date();
+const time=now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+document.getElementById("clock").innerText="🕒 "+time+" | King Emmanuel Music Hub";
 }
 setInterval(updateClock,1000);
 updateClock();
 
-/* FAN COUNTER */
-let fans=1284;
-setInterval(()=>{fans++;document.getElementById("fan-count").innerText="🔥 Fans Connected: "+fans;},4000);
+// FAN COUNTER
+let fans=1317;
+setInterval(()=>{
+fans++;
+document.getElementById("fan-count").innerText="🔥 Fans Connected: "+fans;
+},4000);
 
-/* SERVICE WORKER */
-if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}
+// SERVICE WORKER
+if("serviceWorker" in navigator){
+navigator.serviceWorker.register("sw.js");
+}
 
-/* PUSH SUBSCRIBE */
+// PUSH SUBSCRIBE
 document.getElementById("notify-btn").addEventListener("click", async()=>{
-    if("Notification" in window){
-        const permission=await Notification.requestPermission();
-        if(permission==="granted"){
-            alert("Subscribed for new releases!");
-        } else { alert("Notifications blocked. Enable in browser settings."); }
-    }
+const permission=await Notification.requestPermission();
+if(permission==="granted"){
+alert("Subscribed for new releases!");
+}
 });
 
-/* NEW RELEASE BANNER CLICK + PUSH NOTIFICATION */
+// NEW RELEASE BANNER CLICK
 document.getElementById("new-release").addEventListener("click", ()=>{
-    if("Notification" in window){
-        const notification=new Notification("🔥 New Release — Am Still In Love",{
-            body:"Click to listen on Spotify",
-            icon:"icon-192.png"
-        });
-        notification.onclick=function(){ window.open("https://open.spotify.com/track/2DNRbANkDj0U7SMMBE0geg"); };
-    }
+const notification=new Notification("🔥 New Release — Am Still In Love",{
+body:"Click to listen on Spotify",
+icon:"icon-192.png"
+});
+notification.onclick=function(){window.open("https://open.spotify.com/track/2DNRbANkDj0U7SMMBE0geg");}
+
+// AUTO POPUP
+document.getElementById("release-popup").style.display="flex";
+setTimeout(()=>{document.getElementById("release-popup").style.display="none";},5000);
 });
 
-/* FULL SCREEN RELEASE POPUP */
-function openSong(){ window.open("https://open.spotify.com/track/2DNRbANkDj0U7SMMBE0geg"); document.getElementById("release-popup").style.display="none"; }
+// FULL SCREEN RELEASE POPUP
+function openSong(){
+window.open("https://open.spotify.com/track/2DNRbANkDj0U7SMMBE0geg");
+document.getElementById("release-popup").style.display="none";
+}
 
-/* POPUP AUTO SHOW & AUTO HIDE AFTER 5s */
-setTimeout(()=>{
-    const popup=document.getElementById("release-popup");
-    popup.style.display="flex";
-    setTimeout(()=>{popup.style.display="none";},5000);
-},5000);
+// SPOTIFY AUTO-DETECT (Placeholder for future integration)
+function checkNewSpotifyRelease(){
+  // This function will auto-detect new Spotify releases
+  // Once a new song is detected, it will update the banner & trigger notifications
+  // Example: update banner text, show popup, and push notification
+}
+setInterval(checkNewSpotifyRelease,60000); // Checks every 60s
 </script>
 
 </body>
