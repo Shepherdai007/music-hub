@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>King Emmanuel Music Hub</title>
+
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 
 <style>
+
 body{
     font-family:Arial,sans-serif;
     background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("worship.jpg");
@@ -18,8 +22,15 @@ body{
     padding:20px;
 }
 
-h1{font-size:2.5rem;margin-top:50px;}
-.subtitle{opacity:0.9;margin-bottom:20px;}
+h1{
+    font-size:2.5rem;
+    margin-top:50px;
+}
+
+.subtitle{
+    opacity:0.9;
+    margin-bottom:20px;
+}
 
 #clock{
     position:fixed;
@@ -28,7 +39,7 @@ h1{font-size:2.5rem;margin-top:50px;}
     right:0;
     text-align:center;
     font-size:14px;
-    opacity:0.9;
+    opacity:0.8;
     z-index:999;
 }
 
@@ -58,19 +69,12 @@ h1{font-size:2.5rem;margin-top:50px;}
     font-weight:bold;
     text-decoration:none;
     color:white;
-    transition: all 0.3s ease;
+    transition:all 0.3s ease;
 }
 
 .link-button:hover{
-    transform: scale(1.08);
+    transform:scale(1.08);
     box-shadow:0 0 20px rgba(255,255,255,0.9);
-    animation: pulseLink 1.5s infinite;
-}
-
-@keyframes pulseLink{
-    0%{box-shadow:0 0 5px rgba(255,255,255,0.6);}
-    50%{box-shadow:0 0 25px rgba(255,255,255,0.9);}
-    100%{box-shadow:0 0 5px rgba(255,255,255,0.6);}
 }
 
 .spotify{background:#1DB954;}
@@ -80,11 +84,16 @@ h1{font-size:2.5rem;margin-top:50px;}
 .deezer{background:#0071CE;}
 .boomplay{background:#E60012;}
 .whatsapp{background:#25D366;}
+
 .tiktok{background:#010101;}
 .pinterest{background:#E60023;}
 .facebook{background:#1877F2;}
 .x{background:#1DA1F2;}
-.merch{background:#FFD700;color:black;}
+
+.merch{
+    background:#FFD700;
+    color:black;
+}
 
 form input,form textarea{
     padding:10px;
@@ -118,6 +127,7 @@ form button{
     font-size:2rem;
     z-index:9999;
 }
+
 </style>
 </head>
 
@@ -136,10 +146,13 @@ background:#1DB954;
 color:white;
 font-size:1.2rem;
 cursor:pointer;
-">Listen Now</button>
+">
+Listen Now
+</button>
 </div>
 
 <h1>King Emmanuel</h1>
+
 <h3 id="fan-count">🔥 Fans Connected: 1317</h3>
 
 <p class="subtitle">
@@ -151,12 +164,17 @@ Listen to my music on your favorite platform<br>
 <iframe style="border-radius:12px"
 src="https://open.spotify.com/embed/track/2DNRbANkDj0U7SMMBE0geg"
 width="100%" height="352"
-frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+frameBorder="0"
+allowfullscreen=""
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
 
 <h2>📺 Watch on YouTube</h2>
 <iframe width="100%" height="315"
 src="https://www.youtube.com/embed/Gc4-Qec6MmM"
-frameborder="0" allowfullscreen></iframe>
+frameborder="0"
+allowfullscreen>
+</iframe>
 
 <div class="banner" id="new-release">
 🔥 New Release — Am Still In Love
@@ -175,9 +193,12 @@ Follow King Emmanuel Music Channel on WhatsApp
 
 <h3>Send a Message</h3>
 <form action="https://formspree.io/f/maqpbbpz" method="POST">
-<input type="text" name="name" placeholder="Your Name" required><br>
-<input type="email" name="email" placeholder="Your Email" required><br>
-<textarea name="message" placeholder="Your Message" required></textarea><br>
+<input type="text" name="name" placeholder="Your Name" required>
+<br>
+<input type="email" name="email" placeholder="Your Email" required>
+<br>
+<textarea name="message" placeholder="Your Message" required></textarea>
+<br>
 <button type="submit">Send Message</button>
 </form>
 
@@ -194,17 +215,20 @@ border-radius:20px;
 background:#FF0000;
 color:white;
 border:none;
-">🔔 Subscribe for New Releases</button>
+">
+🔔 Subscribe for New Releases
+</button>
 
 <script>
-/* CLOCK + DATE */
+
+/* CLOCK */
 function updateClock(){
-    const now=new Date();
-    const options={weekday:'short', year:'numeric', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'};
-    const time=now.toLocaleDateString(undefined, options) + " | " + now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-    document.getElementById("clock").innerText="🕒 "+time+" | King Emmanuel Music Hub";
+    const now = new Date();
+    const options = { weekday:'short', year:'numeric', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', hour12:false };
+    const time = now.toLocaleDateString(undefined, options);
+    document.getElementById("clock").innerText = "🕒 " + time + " | King Emmanuel Music Hub";
 }
-setInterval(updateClock,1000);
+setInterval(updateClock, 1000);
 updateClock();
 
 /* FAN COUNTER */
@@ -221,13 +245,15 @@ if("serviceWorker" in navigator){
 
 /* PUSH SUBSCRIBE */
 document.getElementById("notify-btn").addEventListener("click", async()=>{
-    const permission=await Notification.requestPermission();
-    if(permission==="granted"){ alert("Subscribed for new releases!"); }
+    const permission = await Notification.requestPermission();
+    if(permission==="granted"){
+        alert("Subscribed for new releases!");
+    }
 });
 
-/* NEW RELEASE BANNER CLICK + NOTIFICATION */
+/* NEW RELEASE BANNER CLICK + PUSH */
 document.getElementById("new-release").addEventListener("click", ()=>{
-    const notification=new Notification("🔥 New Release — Am Still In Love",{
+    const notification = new Notification("🔥 New Release — Am Still In Love",{
         body:"Click to listen on Spotify",
         icon:"icon-192.png"
     });
@@ -243,8 +269,8 @@ function openSong(){
 }
 setTimeout(()=>{
     document.getElementById("release-popup").style.display="flex";
-    setTimeout(()=>{ document.getElementById("release-popup").style.display="none"; },5000);
 },5000);
+
 </script>
 
 </body>
